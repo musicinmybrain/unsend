@@ -147,7 +147,7 @@ impl<T> Receiver<T> {
                 }
 
                 if self.channel.closed.get() {
-                    return Err(ChannelClosed { _private: () });
+                    return Err(ChannelClosed::new());
                 }
 
                 // Use the listener.
@@ -188,6 +188,12 @@ impl<T> Drop for Receiver<T> {
 #[derive(Debug)]
 pub struct ChannelClosed {
     _private: (),
+}
+
+impl ChannelClosed {
+    pub(crate) fn new() -> Self {
+        ChannelClosed { _private: () }
+    }
 }
 
 impl fmt::Display for ChannelClosed {

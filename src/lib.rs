@@ -32,6 +32,9 @@ pub mod channel;
 #[cfg_attr(docsrs, doc(cfg(feature = "executor")))]
 pub mod executor;
 pub mod lock;
+#[cfg(feature = "alloc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "alloc")))]
+pub mod oneshot;
 
 mod event;
 
